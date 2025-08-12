@@ -16,14 +16,14 @@ body {
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 600px; /* <<< 修改點：加寬容器 */
+  width: 580px; /* <<< 修改點：加寬容器 */
   max-width: 90%;
   padding-bottom: 80px;
 }
 
 h1 {
   font-size: 28px;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   color: #333;
   white-space: nowrap; 
 }
@@ -31,7 +31,7 @@ h1 {
 /* 提示區域 */
 .hint {
   font-size: 14px;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   color: #666;
 }
 
@@ -40,10 +40,10 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center; /* <<< 新增：讓字母垂直置中 */
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   gap: 7px;
   flex-wrap: nowrap;
-  min-height: 60px; /* <<< 新增：設定最小高度，防止坍塌 */
+  min-height: 55px; /* <<< 新增：設定最小高度，防止坍塌 */
 }
 
 /* 每個字母 */
@@ -80,13 +80,13 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center; /* 讓字母垂直置中 */
-  margin-bottom: 16px;
-  height: 60px; /* <<< 修改點：調整高度以匹配新字母尺寸 */
+  margin-bottom: 12px;
+  height: 42px; /* <<< 修改點：調整高度以匹配新字母尺寸 */
   border: 2px solid #ddd;
   padding: 10px;
   background-color: #f9f9f9;
   gap: 7px; /* 確保與題目區間距一致 */
-  min-height: 60px; /* 確保即使沒內容也有高度 */
+  min-height: 42px; /* 確保即使沒內容也有高度 */
 }
 
 /* 這是用來處理原本設計中答案區色塊的樣式，實際上因為JS直接移動元素，這個樣式不會被應用到已放入的字母上 */
@@ -112,8 +112,8 @@ button {
   font-size: 14px;
   border-radius: 4px;
   cursor: pointer;
-  margin-top: 16px;
-  margin-bottom: 16px;
+  margin-top: 12px;
+  margin-bottom: 12px;
 }
 
 button:hover {
