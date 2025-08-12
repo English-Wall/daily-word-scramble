@@ -15,7 +15,7 @@ body {
   background-color: #fff;
   padding: 30px;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
   width: 580px; /* <<< 修改點：加寬容器 */
   max-width: 90%;
   padding-bottom: 80px;
