@@ -13,16 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. 建立題庫 (您可以自由新增、修改或刪除)
   // ======================================================================
   const questions = [
-    { word: 'abrade', hint: 'To scrape or wear away a surface or a part by mechanical or chemical action.' },
-    { word: 'revise', hint: 'To change, improve, or update something, especially a document, plan, or idea.' },
-    { word: 'inspection', hint: 'The procedure which compares an object with its standard or specification' },
-    { word: 'hazardous', hint: 'Dangerous' },
-    { word: 'subsequent', hint: 'That comes “after”' },
-    { word: 'accidental', hint: ' That does not occur on purpose' },
-    { word: 'equivalent', hint: 'Has the same properties, functions, or values' },
-    { word: 'advisory', hint: 'Advice, warning, or non-mandatory recommendation from a manufacturer or authority.' },
-    { word: 'recurrence', hint: 'Something happening again or repeatedly, especially after a period of time.' },
-    { word: 'preliminary', hint: 'Initial' }
+    { word: 'recurrence', hint: 'Something happening again or repeatedly, especially after a period of time.' }
   ];
 
   // --- Game State ---
