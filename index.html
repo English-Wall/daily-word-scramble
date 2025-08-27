@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Word Scramble Game</title>
-  <link rel="stylesheet" href="styles.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel <div class="game-container">
+  <link rel="stylesheet" href="styles.css">
+  <!-- 引入 PT Sans 字體 -->
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="game-container">
     <h1>Word Scramble Game</h1>
-
-    <!-- 題目圖片區 -->
-    <div id="question"></div>
-
-    <!-- 選項按鈕區 -->
-    <div id="options"></div>
-
-    <!-- 回饋訊息 -->
-    <div id="feedback"></div>
-
-    <!-- 答對後出現的按鈕 -->
-    <button id="reward">Enter ID number to get reward!</button>
-  </div>
+    <div class="hint">
+      <p></p></div>
+    <div class="puzzle"></div>
+    <div class="answer"></div>
+    <div class="button-container"></div>
+      <button id="checkBtn">Check Answer</button>
+      <button id="hintBtn">Hint</button>
+      <div id="result"></div>
+ 
+</div>
 
   <script src="script.js"></script>
 </body>
