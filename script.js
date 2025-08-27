@@ -1,5 +1,4 @@
-
-// Word Scramble Game - Final Fix Version
+// Word Scramble Game - Final Version with Reward Button
 
 document.addEventListener('DOMContentLoaded', () => {
   const gameContainer = document.querySelector('.game-container');
@@ -9,9 +8,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const hintBtn = document.getElementById('hintBtn');
   const resultDiv = document.getElementById('result');
   const hintP = document.querySelector('.hint p');
+  const rewardContainer = document.getElementById('rewardContainer');
 
   const questions = [
-    { word: 'abrade', hint: 'To scrape or wear away a surface or a part by mechanical or chemical action.' }
+    {
+      word: 'abrade',
+      hint: 'To scrape or wear away a surface or a part by mechanical or chemical action.'
+    }
   ];
 
   let currentQuestionIndex = 0;
@@ -83,8 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (answer === currentWord) {
       resultDiv.textContent = 'Correct!';
       resultDiv.style.color = 'green';
-      currentQuestionIndex++;
-      setTimeout(() => currentQuestionIndex < questions.length ? loadQuestion() : showGameCompletion(), 1500);
+      showRewardButton();
     } else {
       resultDiv.textContent = 'Try Again!';
       resultDiv.style.color = 'red';
@@ -97,6 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     answerDiv.innerHTML = '';
     resultDiv.textContent = '';
     hintBtn.disabled = false;
+    rewardContainer.innerHTML = '';
     const current = questions[currentQuestionIndex];
     hintP.textContent = `Hint: ${current.hint}`;
     shuffleWord(current.word).forEach(char => {
@@ -110,12 +113,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function showGameCompletion() {
-    gameContainer.innerHTML = `
-      <h1>Congratulations!</h1>
-      <p style="font-size: 20px; color: #333;">You have completed all the word puzzles!</p>
-      <button onclick="location.reload()">Play Again</button>
-    `;
+  function showRewardButton() {
+    const rewardBtn = document.createElement('button');
+    rewardBtn.textContent = 'Enter ID number to get reward!';
+    rewardBtn.style.backgroundColor = 'black';
+    rewardBtn.style.color = 'white';
+    rewardBtn.style.padding = '10px 20px';
+    rewardBtn.style.marginTop = '20px';
+    rewardBtn.style.border = 'none';
+    rewardBtn.style.cursor = 'pointer';
+    rewardBtn.style.fontSize = '16px';
+    rewardBtn.onclick = () => {
+      window.location.href = 'https://script.google.com/macros/s/AKfycbxEXAMPLEURL/exec';
+    };
+    rewardContainer.appendChild(rewardBtn);
   }
 
   answerDiv.addEventListener('dragover', e => e.preventDefault());
