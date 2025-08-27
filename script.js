@@ -1,54 +1,143 @@
-const question = {
-    correct: "transducer",
-    options: ["transducer", "lock nut", "support", "key tab"]
-};
 
-function disableOptions() {
-    document.querySelectorAll('.option-btn').forEach(btn => {
-        btn.disabled = true;
+// Word Scramble Game - Final Fix Version
+
+document.addEventListener('DOMContentLoaded', () => {
+  const gameContainer = document.querySelector('.game-container');
+  const puzzleDiv = document.querySelector('.puzzle');
+  const answerDiv = document.querySelector('.answer');
+  const checkBtn = document.getElementById('checkBtn');
+  const hintBtn = document.getElementById('hintBtn');
+  const resultDiv = document.getElementById('result');
+  const hintP = document.querySelector('.hint p');
+
+  const questions = [
+    { word: 'abrade', hint: 'To scrape or wear away a surface or a part by mechanical or chemical action.' }
+  ];
+
+  let currentQuestionIndex = 0;
+  let draggedLetter = null;
+
+  function shuffleWord(word) {
+    return word.split('').sort(() => Math.random() - 0.5);
+  }
+
+  function getRandomColor() {
+    const colors = ['#f7b7b7', '#b7d7f7', '#d7f7b7'];
+    return colors[Math.floor(Math.random() * colors.length)];
+  }
+
+  function moveLetter(letter, targetDiv) {
+    if (!letter || letter.classList.contains('locked')) return;
+    targetDiv.appendChild(letter);
+    updateClickHandler(letter);
+  }
+
+  function updateClickHandler(letter) {
+    letter.removeEventListener('click', handlePuzzleLetterClick);
+    letter.removeEventListener('click', handleAnswerLetterClick);
+    if (letter.parentElement === puzzleDiv) {
+      letter.addEventListener('click', handlePuzzleLetterClick);
+    } else {
+      letter.addEventListener('click', handleAnswerLetterClick);
+    }
+  }
+
+  function handlePuzzleLetterClick(e) {
+    moveLetter(e.target, answerDiv);
+  }
+
+  function handleAnswerLetterClick(e) {
+    moveLetter(e.target, puzzleDiv);
+  }
+
+  function handleDragStart(e) {
+    draggedLetter = e.target;
+    e.dataTransfer.setData('text/plain', draggedLetter.textContent);
+  }
+
+  function lockLetter(letter) {
+    letter.classList.add('locked');
+    letter.setAttribute('draggable', 'false');
+    letter.removeEventListener('click', handlePuzzleLetterClick);
+    letter.removeEventListener('click', handleAnswerLetterClick);
+    letter.removeEventListener('dragstart', handleDragStart);
+  }
+
+  function giveHint() {
+    if (answerDiv.children.length > 0) {
+      hintBtn.disabled = true;
+      return;
+    }
+    const correctWord = questions[currentQuestionIndex].word;
+    const firstLetter = Array.from(puzzleDiv.children).find(l => l.textContent === correctWord[0]);
+    if (firstLetter) {
+      moveLetter(firstLetter, answerDiv);
+      lockLetter(firstLetter);
+      hintBtn.disabled = true;
+    }
+  }
+
+  function checkAnswer() {
+    const currentWord = questions[currentQuestionIndex].word;
+    const answer = Array.from(answerDiv.children).map(l => l.textContent).join('');
+    if (answer === currentWord) {
+      resultDiv.textContent = 'Correct!';
+      resultDiv.style.color = 'green';
+      currentQuestionIndex++;
+      setTimeout(() => currentQuestionIndex < questions.length ? loadQuestion() : showGameCompletion(), 1500);
+    } else {
+      resultDiv.textContent = 'Try Again!';
+      resultDiv.style.color = 'red';
+      setTimeout(loadQuestion, 1200);
+    }
+  }
+
+  function loadQuestion() {
+    puzzleDiv.innerHTML = '';
+    answerDiv.innerHTML = '';
+    resultDiv.textContent = '';
+    hintBtn.disabled = false;
+    const current = questions[currentQuestionIndex];
+    hintP.textContent = `Hint: ${current.hint}`;
+    shuffleWord(current.word).forEach(char => {
+      const letter = document.createElement('div');
+      letter.className = 'letter';
+      letter.textContent = char;
+      letter.style.backgroundColor = getRandomColor();
+      letter.addEventListener('dragstart', handleDragStart);
+      letter.addEventListener('click', handlePuzzleLetterClick);
+      puzzleDiv.appendChild(letter);
     });
-}
+  }
 
-function loadQuestion() {
-    const nextButton = document.getElementById("next");
-    const rewardButton = document.getElementById("reward");
-
-    nextButton.style.display = "none";
-    rewardButton.style.display = "none";
-    document.getElementById("feedback").textContent = "";
-
-    // 顯示題目圖片
-    document.getElementById("question").innerHTML = `
-        <img src="transducer_b.png" alt="Question Image" style="max-width: 100%; height: auto;">
+  function showGameCompletion() {
+    gameContainer.innerHTML = `
+      <h1>Congratulations!</h1>
+      <p style="font-size: 20px; color: #333;">You have completed all the word puzzles!</p>
+      <button onclick="location.reload()">Play Again</button>
     `;
+  }
 
-    const optionsDiv = document.getElementById("options");
-    optionsDiv.innerHTML = "";
+  answerDiv.addEventListener('dragover', e => e.preventDefault());
+  answerDiv.addEventListener('drop', e => {
+    e.preventDefault();
+    if (draggedLetter && draggedLetter.parentElement !== answerDiv) {
+      moveLetter(draggedLetter, answerDiv);
+      draggedLetter = null;
+    }
+  });
 
-    question.options.forEach((option, index) => {
-        const btn = document.createElement("button");
-        btn.textContent = option;
-        btn.className = `option-btn option-btn-${index + 1}`;
-        btn.onclick = () => {
-            if (option === question.correct) {
-                btn.classList.add("correct");
-                document.getElementById("feedback").textContent = "✅ Correct!";
-                disableOptions();
-                rewardButton.style.display = "block";
-                rewardButton.disabled = false;
-                rewardButton.style.margin = "20px auto";
-            } else {
-                btn.classList.add("incorrect");
-                document.getElementById("feedback").textContent = "❌ Wrong. Try again.";
-                btn.disabled = true;
-            }
-        };
-        optionsDiv.appendChild(btn);
-    });
-}
+  puzzleDiv.addEventListener('dragover', e => e.preventDefault());
+  puzzleDiv.addEventListener('drop', e => {
+    e.preventDefault();
+    if (draggedLetter && draggedLetter.parentElement !== puzzleDiv) {
+      moveLetter(draggedLetter, puzzleDiv);
+      draggedLetter = null;
+    }
+  });
 
-// 點擊「Enter ID number to get reward!」按鈕後導向 Google Script
-document.getElementById("reward").onclick = () => {
-    window.location.href = 'https://script.google.com/macros/s/AKfycbz0rGKd05Jp06lKRQnGDxKF-EQRlUvXVUE-MH3OeKkpKvlNT07SkfGQznTYw4UHBxxntg/exec';
-};
+  checkBtn.addEventListener('click', checkAnswer);
+  hintBtn.addEventListener('click', giveHint);
 
+  loadQuestion();
+});
