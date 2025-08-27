@@ -55,3 +55,100 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function handleDragStart(e) {
     draggedLetter = e.target;
+    e.dataTransfer.setData('text/plain', draggedLetter.textContent);
+  }
+
+  function lockLetter(letter) {
+    letter.classList.add('locked');
+    letter.setAttribute('draggable', 'false');
+    letter.removeEventListener('click', handlePuzzleLetterClick);
+    letter.removeEventListener('click', handleAnswerLetterClick);
+    letter.removeEventListener('dragstart', handleDragStart);
+  }
+
+  function giveHint() {
+    if (answerDiv.children.length > 0) {
+      hintBtn.disabled = true;
+      return;
+    }
+    const correctWord = questions[currentQuestionIndex].word;
+    const firstLetter = Array.from(puzzleDiv.children).find(l => l.textContent === correctWord[0]);
+    if (firstLetter) {
+      moveLetter(firstLetter, answerDiv);
+      lockLetter(firstLetter);
+      hintBtn.disabled = true;
+    }
+  }
+
+  function checkAnswer() {
+    const currentWord = questions[currentQuestionIndex].word;
+    const answer = Array.from(answerDiv.children).map(l => l.textContent).join('');
+    if (answer === currentWord) {
+      resultDiv.textContent = 'Correct!';
+      resultDiv.style.color = 'green';
+      showRewardButton();
+    } else {
+      resultDiv.textContent = 'Try Again!';
+      resultDiv.style.color = 'red';
+      setTimeout(loadQuestion, 1200);
+    }
+  }
+
+  function loadQuestion() {
+    puzzleDiv.innerHTML = '';
+    answerDiv.innerHTML = '';
+    resultDiv.textContent = '';
+    hintBtn.disabled = false;
+    rewardContainer.innerHTML = '';
+    const current = questions[currentQuestionIndex];
+    hintP.textContent = `Hint: ${current.hint}`;
+    shuffleWord(current.word).forEach(char => {
+      const letter = document.createElement('div');
+      letter.className = 'letter';
+      letter.textContent = char;
+      letter.style.backgroundColor = getRandomColor();
+      letter.addEventListener('dragstart', handleDragStart);
+      letter.addEventListener('click', handlePuzzleLetterClick);
+      puzzleDiv.appendChild(letter);
+    });
+  }
+
+  function showRewardButton() {
+    const rewardBtn = document.createElement('button');
+    rewardBtn.textContent = 'Enter ID number to get reward!';
+    rewardBtn.style.backgroundColor = 'black';
+    rewardBtn.style.color = 'white';
+    rewardBtn.style.padding = '10px 20px';
+    rewardBtn.style.marginTop = '20px';
+    rewardBtn.style.border = 'none';
+    rewardBtn.style.cursor = 'pointer';
+    rewardBtn.style.fontSize = '16px';
+    rewardBtn.onclick = () => {
+      window.location.href = 'https://script.google.com/macros/s/AKfycbz0rGKd05Jp06lKRQnGDxKF-EQRlUvXVUE-MH3OeKkpKvlNT07SkfGQznTYw4UHBxxntg/exec';
+    };
+    rewardContainer.appendChild(rewardBtn);
+  }
+
+  answerDiv.addEventListener('dragover', e => e.preventDefault());
+  answerDiv.addEventListener('drop', e => {
+    e.preventDefault();
+    if (draggedLetter && draggedLetter.parentElement !== answerDiv) {
+      moveLetter(draggedLetter, answerDiv);
+      draggedLetter = null;
+    }
+  });
+
+  puzzleDiv.addEventListener('dragover', e => e.preventDefault());
+  puzzleDiv.addEventListener('drop', e => {
+    e.preventDefault();
+    if (draggedLetter && draggedLetter.parentElement !== puzzleDiv) {
+      moveLetter(draggedLetter, puzzleDiv);
+      draggedLetter = null;
+    }
+  });
+
+  checkBtn.addEventListener('click', checkAnswer);
+  hintBtn.addEventListener('click', giveHint);
+
+  loadQuestion();
+});
