@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const puzzleDiv = document.querySelector('.puzzle');
   const answerDiv = document.querySelector('.answer');
   const checkBtn = document.getElementById('checkBtn');
-  const hintBtn = document.getElementById('hintBtn'); // <<< 新增：獲取 Hint 按鈕 
+  const hintBtn = document.getElementById('hintBtn');
   const resultDiv = document.getElementById('result');
   const hintP = document.querySelector('.hint p');
 
@@ -76,12 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   
-   // <<< 新增：鎖定字母的函式 >>> 
-
-  /** 
-   * Locks a letter, making it non-interactive. 
-   * @param {HTMLElement} letter - The letter element to lock. 
-   */ 
+   //鎖定字母的函式
   function lockLetter(letter) { 
     letter.classList.add('locked'); 
     letter.setAttribute('draggable', 'false'); 
@@ -102,23 +97,19 @@ document.addEventListener('DOMContentLoaded', () => {
         hintBtn.disabled = true; // 直接禁用按鈕 
         return; 
     } 
- 
 
     const correctWord = questions[currentQuestionIndex].word; 
     const firstLetterChar = correctWord[0]; 
-
 
     // 從題目區找到第一個匹配提示字母的方塊 
     const letterToMove = Array.from(puzzleDiv.children).find( 
       (letter) => letter.textContent === firstLetterChar 
     ); 
 
-
     if (letterToMove) { 
       // 將字母移動到答案區並鎖定它 
       answerDiv.appendChild(letterToMove); 
       lockLetter(letterToMove); 
-
 
       // 禁用提示按鈕，每回合只能用一次 
       hintBtn.disabled = true; 
@@ -126,9 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
   } 
   
   
-  /**
-   * 4. 檢查答案與處理遊戲進程
-   */
+  /4. 檢查答案與處理遊戲進程/
   function checkAnswer() {
     const currentWord = questions[currentQuestionIndex].word;
     const answerLetters = Array.from(answerDiv.children).map(letter => letter.textContent).join('');
@@ -136,8 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (answerLetters === currentWord) {
       resultDiv.textContent = 'Correct!';
       resultDiv.style.color = 'green';
-      
-      currentQuestionIndex++; // 移至下一題
+      currentQuestionIndex++; 
       
       setTimeout(() => {
         if (currentQuestionIndex < questions.length) {
@@ -159,9 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   
-  /**
-   * 3. 載入特定關卡的題目和提示
-   */
+  /3. 載入特定關卡的題目和提示/
   function loadQuestion() {
     // 清空上個關卡的狀態
     puzzleDiv.innerHTML = '';
@@ -169,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
     resultDiv.textContent = '';
     resultDiv.classList.remove('red', 'green');
 
-    hintBtn.disabled = false; // <<< 修改點：每回合開始時，重新啟用 Hint 按鈕 
+    hintBtn.disabled = false; 
     
     // 獲取當前題目資料
     const currentQuestion = questions[currentQuestionIndex];
@@ -190,9 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
-  /**
-   * 當所有題目都回答完畢時呼叫
-   */
   function showGameCompletion() {
     gameContainer.innerHTML = `
       <h1>Congratulations!</h1>
@@ -221,8 +204,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   checkBtn.addEventListener('click', checkAnswer);
-  hintBtn.addEventListener('click', giveHint); // <<< 新增：為 Hint 按鈕加上點擊事件監聽 
-  
+  hintBtn.addEventListener('click', giveHint); 
+
+  document.getElementById("next").onclick = () => {
+    // Replace 'YOUR_GOOGLE_SITES_URL' with the actual URL of the page where you embedded the Google Form.
+    window.location.href = 'https://script.google.com/macros/s/AKfycbz0rGKd05Jp06lKRQnGDxKF-EQRlUvXVUE-MH3OeKkpKvlNT07SkfGQznTYw4UHBxxntg/exec';
+};
   // --- Start the Game ---
   loadQuestion(); // 初始載入第一題
 });
