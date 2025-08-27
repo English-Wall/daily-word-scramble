@@ -5,98 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Word Scramble Game</title>
   <link rel="stylesheet" href="styles.css"/>
-  <link href="https://fonts.googleapis.com/css2?familyplay=swap
-  <style>
-    body {
-      font-family: 'PT Sans', sans-serif;
-      text-align: center;
-      padding: 20px;
-    }
-    .option-btn {
-      margin: 10px;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    .correct {
-      background-color: #4CAF50;
-      color: white;
-    }
-    .incorrect {
-      background-color: #f44336;
-      color: white;
-    }
-    #reward {
-      display: none;
-      background-color: black;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-    }
-  </style>
-</head>
-<body>
-  <div class="game-container">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel <div class="game-container">
     <h1>Word Scramble Game</h1>
 
+    <!-- 題目圖片區 -->
     <div id="question"></div>
-    <div id="options"></div>
-    <div id="feedback" style="margin-top: 10px;"></div>
 
+    <!-- 選項按鈕區 -->
+    <div id="options"></div>
+
+    <!-- 回饋訊息 -->
+    <div id="feedback"></div>
+
+    <!-- 答對後出現的按鈕 -->
     <button id="reward">Enter ID number to get reward!</button>
   </div>
 
-  <script>
-    const question = {
-      correct: "transducer",
-      options: ["transducer", "lock nut", "support", "key tab"]
-    };
-
-    function disableOptions() {
-      document.querySelectorAll('.option-btn').forEach(btn => {
-        btn.disabled = true;
-      });
-    }
-
-    function loadQuestion() {
-      const rewardButton = document.getElementById("reward");
-      rewardButton.style.display = "none";
-      document.getElementById("feedback").textContent = "";
-
-      document.getElementById("question").innerHTML = `
-        <img src="transducer_b.png" alt="Question Image" style="max-width: 100%; height: auto;">
-      `;
-
-      const optionsDiv = document.getElementById("options");
-      optionsDiv.innerHTML = "";
-
-      question.options.forEach((option, index) => {
-        const btn = document.createElement("button");
-        btn.textContent = option;
-        btn.className = `option-btn option-btn-${index + 1}`;
-        btn.onclick = () => {
-          if (option === question.correct) {
-            btn.classList.add("correct");
-            document.getElementById("feedback").textContent = "✅ Correct!";
-            disableOptions();
-            rewardButton.style.display = "block";
-          } else {
-            btn.classList.add("incorrect");
-            document.getElementById("feedback").textContent = "❌ Wrong. Try again.";
-            btn.disabled = true;
-          }
-        };
-        optionsDiv.appendChild(btn);
-      });
-    }
-
-    document.getElementById("reward").onclick = () => {
-      window.location.href = 'https://script.google.com/macros/s/AKfycbz0rGKd05Jp06lKRQnGDxKF-EQRlUvXVUE-MH3OeKkpKvlNT07SkfGQznTYw4UHBxxntg/exec';
-    };
-
-    loadQuestion();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
