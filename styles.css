@@ -195,3 +195,20 @@ button {
   margin-top: 0; /* 從 20px 改為 0 */ 
 
 } 
+
+/* 答對後出現的獎勵按鈕 */
+#reward {
+  display: none; /* 初始隱藏 */
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+#reward:hover {
+  background-color: #333;
+}
