@@ -1,6 +1,7 @@
 // Word Scramble Game - Final Version with Reward Button
 
 document.addEventListener('DOMContentLoaded', () => {
+  let rewardShown = false;
   const gameContainer = document.querySelector('.game-container');
   const puzzleDiv = document.querySelector('.puzzle');
   const answerDiv = document.querySelector('.answer');
@@ -114,6 +115,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function showRewardButton() {
+    if (rewardShown) return;
+    rewardShown = true;
     const rewardBtn = document.createElement('button');
     rewardBtn.textContent = 'Enter ID number to get reward!';
     rewardBtn.style.backgroundColor = 'black';
