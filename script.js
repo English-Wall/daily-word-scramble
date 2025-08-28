@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
     rewardBtn.style.cursor = 'pointer';
     rewardBtn.style.fontSize = '16px';
     rewardBtn.onclick = () => {
-      window.location.href = 'https://script.google.com/macros/s/AKfycbz0rGKd05Jp06lKRQnGDxKF-EQRlUvXVUE-MH3OeKkpKvlNT07SkfGQznTYw4UHBxxntg/exec';
+      window.open('https://script.google.com/macros/s/AKfycbz0rGKd05Jp06lKRQnGDxKF-EQRlUvXVUE-MH3OeKkpKvlNT07SkfGQznTYw4UHBxxntg/exec', '_blank');
     };
     rewardContainer.appendChild(rewardBtn);
   }
