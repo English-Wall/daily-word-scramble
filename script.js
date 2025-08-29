@@ -1,4 +1,4 @@
-// Word Scramble Game - Final Version with Reward Button
+//修改15,16,93行
 
 document.addEventListener('DOMContentLoaded', () => {
   let rewardShown = false;
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // 顯示中文意思
       const meaningDiv = document.createElement('div');
       meaningDiv.textContent = '磨損、刮除';
-      meaningDiv.style.marginTop = '8px';
+      meaningDiv.style.marginTop = '2px';
       meaningDiv.style.fontSize = '16px';
       meaningDiv.style.color = '#333';
       puzzleDiv.innerHTML = ''; // 清空原本的字母
