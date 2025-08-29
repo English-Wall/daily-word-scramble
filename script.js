@@ -95,6 +95,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  
+function checkAnswer() {
+  const currentWord = questions[currentQuestionIndex].word;
+  const answer = Array.from(answerDiv.children).map(l => l.textContent).join('');
+  if (answer === currentWord) {
+    resultDiv.textContent = 'Correct!';
+    resultDiv.style.color = 'green';
+    showRewardButton();
+
+    // 顯示中文意思
+    const meaningDiv = document.createElement('div');
+    meaningDiv.textContent = '磨損、刮除';
+    meaningDiv.style.marginTop = '10px';
+    meaningDiv.style.fontSize = '16px';
+    meaningDiv.style.color = '#333';
+    puzzleDiv.innerHTML = ''; // 清空原本的字母
+    puzzleDiv.appendChild(meaningDiv);
+
+  } else {
+    resultDiv.textContent = 'Try Again!';
+    resultDiv.style.color = 'red';
+    setTimeout(loadQuestion, 1200);
+  }
+}
+
+
   function loadQuestion() {
     puzzleDiv.innerHTML = '';
     answerDiv.innerHTML = '';
