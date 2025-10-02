@@ -143,20 +143,27 @@ function loadQuestion() {
   });
 
   // ✅ 提交到 Google Sheet
-  submitBtn.addEventListener('click', () => {
-    const id = document.getElementById('idNumber').value.trim();
-    const word = document.getElementById('wordOfDay').value.trim();
+document.getElementById("submit").onclick = () => {
+  const id = document.getElementById("idNumber").value.trim();
+  const word = document.getElementById("wordOfDay").value.trim();
+  const status = document.getElementById("submitFeedback");
 
-    if (!id || !word) {
-      submitFeedback.textContent = "⚠️ 請完整填寫所有欄位!";
-      submitFeedback.style.color = "red";
-      return;
-    }
+  // 驗證 ID 是否為數字
+  if (!/^\d+$/.test(id)) {
+    status.textContent = "❗ 請輸入正確的數字員工號";
+    return;
+  }
 
-    submitFeedback.textContent = "⏳ 正在提交...";
-    submitFeedback.style.color = "black";
-    submitBtn.disabled = true;
+  // 驗證 word 是否為英文字母
+  if (!/^[a-zA-Z]+$/.test(word)) {
+    status.textContent = "❗ 請輸入正確的英文單字";
+    return;
+  }
 
+ status.textContent = "⏳Submitting...";
+  document.getElementById("submit").disabled = true; // 先禁用按鈕防止重複提交
+
+    
     fetch("https://script.google.com/macros/s/AKfycbxN_QRhW6F7ogSh_twhLlfMZNbSyGlzip3AmhiWHt1wJ0It4fReU53RJ5Ub5w_nWTLE/exec", {
       method: "POST",
       headers: {
@@ -166,7 +173,7 @@ function loadQuestion() {
     })
     .then(response => response.json())
     .then(data => {
-      submitFeedback.textContent = data.message || "✅ 提交成功!";
+      submitFeedback.textContent = data.message || "✅ submitted!";
       submitFeedback.style.color = data.status === "success" ? "green" : "red";
 
       if (data.status === "success") {
