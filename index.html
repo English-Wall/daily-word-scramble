@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word Scramble Game</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="game-container">
+    <h1>Word Scramble Game</h1>
+    <div class="hint"><p></p></div>
+    <div class="puzzle"></div>
+    <div class="answer"></div>
+    <div class="button-container">
+      <button id="checkBtn">Check Answer</button>
+      <button id="hintBtn">Hint</button>  
+    </div>
+    <div id="result"></div>
+    <div id="rewardContainer"></div>
+
+    <!-- 答對後才會顯示的按鈕 -->
+    <button id="reward" style="display:none;">Enter ID number to get reward!</button>
+
+    <!-- 輸入區塊 -->
+    <div id="submission" style="display: none; margin-top: 20px;">
+      <input type="text" id="idNumber" placeholder="請輸入您的員工號" />
+      <input type="text" id="wordOfDay" placeholder="今天學到的單字是?" />
+      <button id="submit">Submit</button>
+      <div id="submitFeedback"></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
