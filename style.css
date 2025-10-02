@@ -24,9 +24,8 @@ h1 {
   white-space: nowrap; 
 }
 
-.hint p {
-  font-size: 16px;
-  font-weight: 300;
+.hint {
+  font-size: 14px;
   margin-bottom: 12px;
   color: #666;
 }
@@ -227,3 +226,4 @@ button {
   color: #333;
 }
 
+}
