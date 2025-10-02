@@ -25,7 +25,7 @@ h1 {
 }
 
 .hint {
-  font-size: 16px;
+  font-size: 14px;
   margin-bottom: 12px;
   color: #666;
 }
@@ -37,7 +37,7 @@ h1 {
   margin-bottom: 12px;
   gap: 7px;
   flex-wrap: nowrap;
-  min-height: 54px;
+  min-height: 55px;
 }
 
 .puzzle .letter {
