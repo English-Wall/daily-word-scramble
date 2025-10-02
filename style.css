@@ -37,7 +37,7 @@ h1 {
   margin-bottom: 12px;
   gap: 7px;
   flex-wrap: nowrap;
-  min-height: 50px;
+  min-height: 54px;
 }
 
 .puzzle .letter {
