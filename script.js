@@ -146,12 +146,19 @@ function loadQuestion() {
   submitBtn.addEventListener('click', () => {
     const id = document.getElementById('idNumber').value.trim();
     const word = document.getElementById('wordOfDay').value.trim();
+    const status = document.getElementById("submitFeedback");
 
-    if (!id || !word) {
-      submitFeedback.textContent = "⚠️ 請完整填寫所有欄位!";
-      submitFeedback.style.color = "red";
-      return;
-    }
+  // 驗證 ID 是否為數字
+  if (!/^\d+$/.test(id)) {
+    status.textContent = "❗ 請輸入正確的數字員工號";
+    return;
+  }
+
+  // 驗證 word 是否為英文字母
+  if (!/^[a-zA-Z]+$/.test(word)) {
+    status.textContent = "❗ 請輸入正確的英文單字";
+    return;
+  }
 
     submitFeedback.textContent = "⏳ Submitting...";
     submitFeedback.style.color = "black";
