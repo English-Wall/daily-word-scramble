@@ -25,7 +25,8 @@ h1 {
 }
 
 .hint {
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 300;
   margin-bottom: 12px;
   color: #666;
 }
