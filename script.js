@@ -153,7 +153,7 @@ function loadQuestion() {
       return;
     }
 
-    submitFeedback.textContent = "⏳ 正在提交...";
+    submitFeedback.textContent = "⏳ Submitting...";
     submitFeedback.style.color = "black";
     submitBtn.disabled = true;
 
@@ -166,7 +166,7 @@ function loadQuestion() {
     })
     .then(response => response.json())
     .then(data => {
-      submitFeedback.textContent = data.message || "✅ 提交成功!";
+      submitFeedback.textContent = data.message || "✅ Submitted!";
       submitFeedback.style.color = data.status === "success" ? "green" : "red";
 
       if (data.status === "success") {
