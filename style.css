@@ -18,15 +18,15 @@ body {
 }
 
 h1 {
-  font-size: 32px;
+  font-size: 38px;
   margin-bottom: 6px;
   color: #333;
   white-space: nowrap; 
 }
 
 .hint {
-  font-size: 16px;
-  margin-bottom: 12px;
+  font-size: 18px;
+  margin-bottom: 10px;
   color: #666;
 }
 
@@ -47,7 +47,7 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 24px; 
+  font-size: 26px; 
   font-weight: bold;
   border-radius: 10px;
   cursor: pointer;
