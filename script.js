@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const questions = [
   {
-    date: '2025-10-28',
+    date: '2025-10-31',
     word: 'hazardous',
     hint: 'Dangerous',
     meaning: '有危險的'
