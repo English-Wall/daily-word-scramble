@@ -2,8 +2,9 @@ body {
   font-family: 'PT Sans', sans-serif;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 90vh;
+  /* align-items: center; (移除) */
+  /* height: 90vh; (移除) */
+  padding-top: 20px; /* (新增) 讓它離頂部有距離 */
   margin: 0;
   background-color: #ffffff;
 }
@@ -226,4 +227,32 @@ button {
   color: #333;
 }
 
+/* (新增) === 手機響應式 === */
+@media (max-width: 600px) {
+  body {
+    padding-top: 10px; /* 手機上頂部距離縮小 */
+  }
+
+  .game-container {
+    padding: 15px; /* 手機上左右 padding 縮小 */
+    padding-bottom: 40px;
+    width: 100%;
+    box-sizing: border-box; /* 確保 padding 不會讓寬度溢出 */
+  }
+
+  h1 {
+    font-size: 30px; /* 縮小標題字體 */
+    white-space: normal; /* (修正) 允許標題換行 */
+  }
+
+  .puzzle .letter {
+    width: 35px;
+    height: 35px;
+    font-size: 22px;
+  }
+
+  #submission input {
+    width: 90%;
+  }
 }
+/* (移除) 刪除了檔案結尾多餘的 } 符號 */
