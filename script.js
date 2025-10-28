@@ -13,22 +13,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const questions = [
   {
-    date: '2025-10-27',
+    date: '2025-10-28',
     word: 'hazardous',
     hint: 'Dangerous',
     meaning: '有危險的'
   },
   {
-    date: '2025-10-28',
-    word: 'inspection',
-    hint: 'The procedure which compares an object with its standard or specification.',
-    meaning: '檢查'
+    date: '2025-10-29',
+    word: 'recurrence',
+    hint: 'Something happening again or repeatedly, especially after a period time.',
+    meaning: '重複事項'
   },
   {
-    date: '2025-10-29',
+    date: '2025-10-30',
     word: 'equivalent',
     hint: 'Has the same properties, functions, or values',
     meaning: '等同的、等值的'
+  },
+  {
+    date: '2025-10-31',
+    word: 'occupant',
+    hint: 'Someone who is currently inside or using a space.',
+    meaning: '佔有人'
+  },
+  {
+    date: '2025-11-01',
+    word: 'preliminary',
+    hint: 'Initial',
+    meaning: '初步的；開端的'
+  },
+   {
+    date: '2025-11-02',
+    word: 'advisory',
+    hint: 'Advice, warning, or non-mandatory recommendation from a manufacturer or authority.',
+    meaning: '公告；警告'
   },
 ];
 
