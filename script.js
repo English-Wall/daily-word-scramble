@@ -13,19 +13,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const questions = [
   {
-    word: 'abrade',
-    hint: 'To scrape or wear away a surface or a part by mechanical or chemical action.',
-    meaning: '磨損、刮除'
+    word: 'hazardous',
+    hint: 'Dangerous',
+    meaning: '有危險的'
   },
   {
-    word: 'benevolent',
-    hint: 'Well meaning and kindly.',
-    meaning: '仁慈的、善意的'
+    word: 'inspection',
+    hint: 'The procedure which compares an object with its standard or specification.',
+    meaning: '檢查'
   },
   {
-    word: 'candid',
-    hint: 'Truthful and straightforward.',
-    meaning: '坦率的、直言的'
+    word: 'equivalent',
+    hint: 'Has the same properties, functions, or values',
+    meaning: '等同的、等值的'
   },
 ];
 
