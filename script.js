@@ -13,16 +13,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const questions = [
   {
+    date: '2025-10-28',
     word: 'hazardous',
     hint: 'Dangerous',
     meaning: '有危險的'
   },
   {
+    date: '2025-10-29',
     word: 'inspection',
     hint: 'The procedure which compares an object with its standard or specification.',
     meaning: '檢查'
   },
   {
+    date: '2025-10-30',
     word: 'equivalent',
     hint: 'Has the same properties, functions, or values',
     meaning: '等同的、等值的'
@@ -99,8 +102,23 @@ function loadQuestion() {
   submissionDiv.style.display = 'none';
   rewardShown = false;
 
-  // 隨機抽一題
-  const current = questions[Math.floor(Math.random() * questions.length)];
+  // 取得今天日期（格式：YYYY-MM-DD）
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, '0');
+  const dd = String(today.getDate()).padStart(2, '0');
+  const dateKey = `${yyyy}-${mm}-${dd}`;
+
+  // 找出今天的題目
+  const current = questions.find(q => q.date === dateKey);
+
+  if (!current) {
+    // 沒有題目就顯示預設訊息
+    puzzleDiv.innerHTML = '<div style="font-size:20px;color:#888;">今天沒有題目</div>';
+    hintP.textContent = '';
+    window.currentQuestion = null;
+    return;
+  }
 
   hintP.textContent = `Hint: ${current.hint}`;
   shuffleWord(current.word).forEach(char => {
@@ -112,9 +130,9 @@ function loadQuestion() {
     puzzleDiv.appendChild(letter);
   });
 
-  // 記錄當前題目（方便 checkAnswer 使用）
   window.currentQuestion = current;
 }
+
 
   function showRewardButton() {
     if (rewardShown) return;
