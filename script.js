@@ -49,7 +49,7 @@ const questions = [
     meaning: '公告；警告'
   },
   {
-    date: '2025-11-02',
+    date: '2025-11-03',
     word: 'hazardous',
     hint: 'Dangerous',
     meaning: '有危險的'
