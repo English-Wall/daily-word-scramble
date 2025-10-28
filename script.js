@@ -13,19 +13,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const questions = [
   {
-    date: '2025-10-31',
+    date: '2025-10-27',
     word: 'hazardous',
     hint: 'Dangerous',
     meaning: '有危險的'
   },
   {
-    date: '2025-10-29',
+    date: '2025-10-28',
     word: 'inspection',
     hint: 'The procedure which compares an object with its standard or specification.',
     meaning: '檢查'
   },
   {
-    date: '2025-10-30',
+    date: '2025-10-29',
     word: 'equivalent',
     hint: 'Has the same properties, functions, or values',
     meaning: '等同的、等值的'
