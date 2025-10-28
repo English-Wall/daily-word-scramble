@@ -48,6 +48,12 @@ const questions = [
     hint: 'Advice, warning, or non-mandatory recommendation from a manufacturer or authority.',
     meaning: '公告；警告'
   },
+  {
+    date: '2025-11-02',
+    word: 'hazardous',
+    hint: 'Dangerous',
+    meaning: '有危險的'
+  },
 ];
 
   let currentQuestionIndex = 0;
