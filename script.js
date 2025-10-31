@@ -13,18 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const questions = [
   {
-    date: '2025-11-10',
-    word: 'hazardous',
-    hint: 'Dangerous',
-    meaning: '有危險的'
-  },
-  {
-    date: '2025-11-11',
-    word: 'recurrence',
-    hint: 'Something happening again or repeatedly, especially after a period time.',
-    meaning: '重複事項'
-  },
-  {
     date: '2025-11-12',
     word: 'equivalent',
     hint: 'Has the same properties, functions, or values',
@@ -53,6 +41,18 @@ const questions = [
     word: 'subsequent',
     hint: 'Happening or coming after something else.',
     meaning: '後續的'
+  },
+  {
+    date: '2025-11-17',
+    word: 'hazardous',
+    hint: 'Dangerous',
+    meaning: '有危險的'
+  },
+  {
+    date: '2025-11-18',
+    word: 'recurrence',
+    hint: 'Something happening again or repeatedly, especially after a period time.',
+    meaning: '重複事項'
   },
 ];
 
