@@ -49,12 +49,6 @@ const questions = [
     meaning: '公告；警告'
   },
   {
-    date: '2025-11-15',
-    word: 'hazardous',
-    hint: 'Dangerous',
-    meaning: '有危險的'
-  },
-  {
     date: '2025-11-16',
     word: 'subsequent',
     hint: 'Happening or coming after something else.',
