@@ -54,6 +54,48 @@ const questions = [
     hint: 'Something happening again or repeatedly, especially after a period time.',
     meaning: '重複事項'
   },
+  {
+    date: '2025-11-26',
+    word: 'barrier',
+    hint: '1. Something such as a wall that prevents the movement of something else.  2. Something that prevents a person from making progress',
+    meaning: '障礙物;阻礙'
+  },
+  {
+    date: '2025-11-27',
+    word: 'accidental',
+    hint: 'That does not occur on purpose',
+    meaning: '意外的'
+  },
+  {
+    date: '2025-11-28',
+    word: 'abrade',
+    hint: 'To scrape or wear away a surface or a part by mechanical or chemical action.',
+    meaning: '磨掉'
+  },
+  {
+    date: '2025-11-29',
+    word: 'reference',
+    hint: 'A source of information',
+    meaning: '1.出處2.查閱,參考3.涉及,有關'
+  },
+  {
+    date: '2025-11-30',
+    word: 'cartridge',
+    hint: 'A small, self-contained explosive device used to initiate a mechanical action like a squib.',
+    meaning: '彈藥筒;子彈;炸藥包'
+  },
+  {
+    date: '2025-12-01',
+    word: 'inspection',
+    hint: 'The procedure which compares an object with its standard or specification.',
+    meaning: '檢查'
+  },
+  {
+    date: '2025-12-02',
+    word: 'revise',
+    hint: 'To change, improve, or update something, especially a document, plan, or idea.',
+    meaning: '修訂;校訂'
+  },
 ];
 
   let currentQuestionIndex = 0;
