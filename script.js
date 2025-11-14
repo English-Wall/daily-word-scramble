@@ -187,14 +187,19 @@ function loadQuestion() {
   }
 
   hintP.textContent = `Hint: ${current.hint}`;
-  shuffleWord(current.word).forEach(char => {
-    const letter = document.createElement('div');
-    letter.className = 'letter';
-    letter.textContent = char;
-    letter.style.backgroundColor = getRandomColor();
-    letter.addEventListener('click', handlePuzzleLetterClick);
-    puzzleDiv.appendChild(letter);
-  });
+    const lettersWithIndex = current.word
+     .split('')
+     .map((char, index) => ({ char, index }));
+
+    shuffleWord(lettersWithIndex).forEach(item => {
+     const letter = document.createElement('div');
+     letter.className = 'letter';
+     letter.textContent = item.char;
+     letter.dataset.index = item.index; 
+     letter.style.backgroundColor = getRandomColor();
+     letter.addEventListener('click', handlePuzzleLetterClick);
+     puzzleDiv.appendChild(letter);
+    });
 
   window.currentQuestion = current;
 }
@@ -214,7 +219,7 @@ function loadQuestion() {
       return;
     }
     const correctWord = questions[currentQuestionIndex].word;
-    const firstLetter = Array.from(puzzleDiv.children).find(l => l.textContent === correctWord[0]);
+    const firstLetter = Array.from(puzzleDiv.children).find(l => Number(l.dataset.index) === 0);
     if (firstLetter) {
       moveLetter(firstLetter, answerDiv);
       firstLetter.classList.add('locked');
