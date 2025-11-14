@@ -209,11 +209,12 @@ function loadQuestion() {
   // 綁定事件
   checkBtn.addEventListener('click', checkAnswer);
   hintBtn.addEventListener('click', () => {
+    if (!window.currentQuestion) return;
     if (answerDiv.children.length > 0) {
       hintBtn.disabled = true;
       return;
     }
-    const correctWord = questions[currentQuestionIndex].word;
+    const correctWord = window.currentQuestion.word;
     const firstLetter = Array.from(puzzleDiv.children).find(l => l.textContent === correctWord[0]);
     if (firstLetter) {
       moveLetter(firstLetter, answerDiv);
